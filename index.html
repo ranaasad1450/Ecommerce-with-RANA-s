@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="RANA'S — a modern online store. Electronics, fashion, home & living, beauty and sports with fast delivery across Pakistan.">
+<title>RANA'S — Modern Online Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ===== ANNOUNCEMENT ===== -->
+<div class="announce">🚚 Free shipping on orders over Rs 5,000 &nbsp;•&nbsp; 7-day easy returns &nbsp;•&nbsp; Cash on Delivery available nationwide</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site">
+  <div class="container nav-wrap">
+    <a href="#home" class="logo" aria-label="RANA'S home">
+      <span class="logo-mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+      <span>RANA<b>'S</b></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#deals">Deals</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <form class="nav-search" id="searchForm" role="search">
+      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="searchInput" placeholder="Search products… e.g. headphones" aria-label="Search products">
+    </form>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg class="icon" id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn" id="wishBtn" aria-label="Open wishlist">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        <span class="cart-badge" id="wishCount" hidden>0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Open shopping cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge" id="cartCount" hidden>0</span>
+      </button>
+      <button class="icon-btn hamburger" id="menuBtn" aria-label="Open menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE NAV ===== -->
+<nav class="mnav" id="mnav" aria-label="Mobile navigation">
+  <div class="mnav-head">
+    <a href="#home" class="logo"><span class="logo-mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><span>RANA<b>'S</b></span></a>
+    <button class="icon-btn" id="mnavClose" aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <form class="mnav-search" id="mnavSearchForm" role="search">
+    <input type="search" id="mnavSearch" placeholder="Search products…" aria-label="Search products mobile">
+  </form>
+  <a class="mlink" href="#home">Home <span>→</span></a>
+  <a class="mlink" href="#categories">Categories <span>→</span></a>
+  <a class="mlink" href="#deals">Flash Deals <span>→</span></a>
+  <a class="mlink" href="#shop">Shop <span>→</span></a>
+  <a class="mlink" href="#contact">Contact <span>→</span></a>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-badge">✦ &nbsp;New Season · Mega Sale 2026</span>
+      <h1>Shop the Future, <span class="grad">Delivered Today.</span></h1>
+      <p class="lead">Discover 10,000+ handpicked products across electronics, fashion, home &amp; living, beauty and sports — with lightning-fast delivery all over Pakistan.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn btn-primary btn-lg">Start Shopping
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a href="#deals" class="btn btn-ghost btn-lg">View Flash Deals</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>25K+</b><span>Happy Customers</span></div>
+        <div class="stat"><b>4.9★</b><span>Average Rating</span></div>
+        <div class="stat"><b>120+</b><span>Premium Brands</span></div>
+        <div class="stat"><b>48h</b><span>Fast Delivery</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ring"></div>
+      <img class="hero-img" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/569c5db1bbe5.jpg" alt="Happy shopper with colorful shopping bags" fetchpriority="high">
+      <div class="float-card fc1">
+        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2b27ee93f867.jpg" alt="Wireless earbuds">
+        <div><div class="fc-name">AirPods Pro Max</div><div class="fc-price">Rs 4,499</div></div>
+      </div>
+      <div class="float-card fc-pill fc2">
+        <div><div class="fc-name">🎉 Mega Discount</div><div class="fc-price">Up to 45% OFF</div></div>
+      </div>
+      <div class="float-card fc3">
+        <div>
+          <div class="fc-name" style="display:flex;align-items:center;gap:6px;"><svg class="icon-sm" style="color:#f59e0b;fill:#f59e0b" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg> 4.9 · 12,400 reviews</div>
+          <div class="fc-price" style="color:var(--muted)">Trusted by 25,000+ shoppers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust rv">
+  <div class="container trust-grid">
+    <div class="trust-item"><div class="trust-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></div><div><b>Free &amp; Fast Shipping</b><span>Free on orders over Rs 5,000 — 48h nationwide</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div><div><b>7-Day Easy Returns</b><span>Changed your mind? Return it, no questions asked</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.355a1 1 0 0 0-.303 1.212 9.6 9.6 0 0 0 6.403 6.401"/></svg></div><div><b>24/7 Support</b><span>Real humans on chat, email &amp; WhatsApp</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div><div><b>Secure Payments</b><span>COD, JazzCash, Easypaisa &amp; card — fully encrypted</span></div></div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="cats" id="categories">
+  <div class="container">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Browse</span><h2>Shop by Category</h2><p>Jump straight into what you love — five curated collections, thousands of products.</p></div>
+      <a href="#shop" class="btn btn-ghost">View All Products</a>
+    </div>
+    <div class="cat-grid rv">
+      <button class="cat-card" data-cat="Electronics"><div class="cat-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div><b>Electronics</b><span>5 products</span></button>
+      <button class="cat-card" data-cat="Fashion"><div class="cat-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></div><b>Fashion</b><span>4 products</span></button>
+      <button class="cat-card" data-cat="Home & Living"><div class="cat-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8"/><path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><path d="M3 20h18"/><path d="M7 16h.01M17 16h.01"/></svg></div><b>Home &amp; Living</b><span>3 products</span></button>
+      <button class="cat-card" data-cat="Beauty"><div class="cat-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg></div><b>Beauty</b><span>2 products</span></button>
+      <button class="cat-card" data-cat="Sports"><div class="cat-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9h11"/><path d="M6.5 15h11"/><path d="M2 6.5a2.5 2.5 0 1 1 0 5v1a2.5 2.5 0 1 1 0 5"/><path d="M22 6.5a2.5 2.5 0 1 0 0 5v1a2.5 2.5 0 1 0 0 5"/></svg></div><b>Sports</b><span>2 products</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLASH DEALS ===== -->
+<section class="deals" id="deals">
+  <div class="container">
+    <div class="deal-banner rv">
+      <div class="deal-top">
+        <div>
+          <h3>⚡ Flash Deals of the Day</h3>
+          <p>Hurry up! Limited stock — grab these prices before the timer hits zero.</p>
+        </div>
+        <div class="countdown" id="countdown" aria-label="Deal countdown">
+          <div class="cd-box"><b id="cdH">00</b><span>Hours</span></div><span class="cd-sep">:</span>
+          <div class="cd-box"><b id="cdM">00</b><span>Minutes</span></div><span class="cd-sep">:</span>
+          <div class="cd-box"><b id="cdS">00</b><span>Seconds</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="deal-row rv" id="dealRow"></div>
+  </div>
+</section>
+
+<!-- ===== SHOP ===== -->
+<section class="shop" id="shop">
+  <div class="container">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Our Collection</span><h2>Featured Products</h2><p>Handpicked bestsellers, updated every week. Tap a product for quick view.</p></div>
+    </div>
+    <div class="filter-bar rv">
+      <div class="chips" id="catChips">
+        <button class="chip active" data-cat="All">All</button>
+        <button class="chip" data-cat="Electronics">Electronics</button>
+        <button class="chip" data-cat="Fashion">Fashion</button>
+        <button class="chip" data-cat="Home & Living">Home &amp; Living</button>
+        <button class="chip" data-cat="Beauty">Beauty</button>
+        <button class="chip" data-cat="Sports">Sports</button>
+      </div>
+      <div class="filter-right">
+        <div class="price-filter">
+          <span>Max price</span>
+          <input type="range" id="priceRange" min="2000" max="30000" step="500" value="30000" aria-label="Maximum price filter">
+          <output id="priceOut">Rs 30,000</output>
+        </div>
+        <select class="sort-select" id="sortSelect" aria-label="Sort products">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+    <p class="results-note" id="resultsNote"></p>
+    <div class="prod-grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ===== PROMO BANNER ===== -->
+<section class="promo">
+  <div class="container">
+    <div class="promo-card rv">
+      <div class="promo-txt">
+        <span class="promo-tag">✨ Fashion Week Special</span>
+        <h3>Style Up Your Look — <em>Flat 40% OFF</em> on the New Collection</h3>
+        <p>Trendy fits, timeless staples and accessories that turn heads. Limited-time pricing on our freshest arrivals.</p>
+        <div><button class="btn btn-primary btn-lg" data-shop-cat="Fashion">Explore Fashion
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+      </div>
+      <div class="promo-img"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0b3c62f29c34.jpg" alt="Fashion model in trendy outfit" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testi">
+  <div class="container">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Testimonials</span><h2>Loved by 25,000+ Shoppers</h2><p>Real reviews from customers across Karachi, Lahore, Islamabad and beyond.</p></div>
+    </div>
+    <div class="testi-grid">
+      <div class="t-card rv"><span class="t-quote">"</span><div class="stars" aria-label="5 star rating"><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg></div>
+        <p>Ordered the wireless headphones at midnight and they arrived in Karachi within 40 hours. Packaging was premium and the product is 100% genuine. RANA'S is now my go-to store.</p>
+        <div class="t-user"><span class="t-avatar">AK</span><div><b>Ayesha Khan</b><span>Karachi</span></div></div></div>
+      <div class="t-card rv"><span class="t-quote">"</span><div class="stars" aria-label="5 star rating"><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg></div>
+        <p>The quick view and cart experience is smoother than most international sites. Cash on Delivery worked perfectly and support replied on WhatsApp within minutes. Highly recommended!</p>
+        <div class="t-user"><span class="t-avatar">BR</span><div><b>Bilal Raza</b><span>Lahore</span></div></div></div>
+      <div class="t-card rv"><span class="t-quote">"</span><div class="stars" aria-label="5 star rating"><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg><svg class="icon-sm" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l2.9 6.26 6.6.57-5 4.44 1.5 6.47L12 16.9 5.99 19.74l1.5-6.47-5-4.44 6.6-.57z"/></svg></div>
+        <p>I returned a handbag because the color didn't match my outfit — the pickup came the next day and my refund was processed instantly. Customer-first service, five stars from me.</p>
+        <div class="t-user"><span class="t-avatar">SM</span><div><b>Sana Malik</b><span>Islamabad</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter">
+  <div class="container">
+    <div class="news-card rv">
+      <div>
+        <h3>Join the RANA'S Insider Club 💌</h3>
+        <p>Get early access to flash sales, exclusive coupon codes and new-arrival alerts — straight to your inbox, once a week.</p>
+      </div>
+      <form class="news-form" id="newsForm">
+        <input type="email" id="newsEmail" placeholder="Enter your email address" aria-label="Email address" required>
+        <button type="submit" class="btn btn-white">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site" id="contact">
+  <div class="container">
+    <div class="f-grid">
+      <div class="f-about">
+        <a href="#home" class="logo"><span class="logo-mark"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><span>RANA<b>'S</b></span></a>
+        <p>RANA'S is Pakistan's modern online marketplace — quality-checked products, honest prices and a shopping experience designed around you.</p>
+        <div class="socials">
+          <a href="#home" aria-label="Facebook"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V11H8v3h2.2v7Z"/></svg></a>
+          <a href="#home" aria-label="Instagram"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/></svg></a>
+          <a href="#home" aria-label="X / Twitter"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M17.7 3H21l-7.3 8.3L22.2 21h-6.7l-5.3-6.4L4.2 21H1l7.8-8.9L1.8 3h6.9l4.8 5.8Zm-1.2 16h1.9L6.9 4.9H4.9Z"/></svg></a>
+          <a href="#home" aria-label="YouTube"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8c1.5.4 7.8.4 7.8.4s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.3 22 12 22 12Zm-11.8 3.2V8.8L15.5 12Z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop" data-shop-cat="Electronics">Electronics</a></li>
+          <li><a href="#shop" data-shop-cat="Fashion">Fashion</a></li>
+          <li><a href="#shop" data-shop-cat="Home & Living">Home &amp; Living</a></li>
+          <li><a href="#shop" data-shop-cat="Beauty">Beauty</a></li>
+          <li><a href="#shop" data-shop-cat="Sports">Sports</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#contact">Order Tracking</a></li>
+          <li><a href="#contact">Shipping Info</a></li>
+          <li><a href="#contact">Returns &amp; Refunds</a></li>
+          <li><a href="#contact">FAQs</a></li>
+          <li><a href="#contact">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Get in Touch</h4>
+        <ul class="f-contact">
+          <li><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>ranaasadsaeed65@gmail.com</li>
+          <li><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Bahawalpur, Punjab, Pakistan</li>
+        </ul>
+        <div class="pay-row"><span class="pay-badge">COD</span><span class="pay-badge">JAZZCASH</span><span class="pay-badge">EASYPAISA</span><span class="pay-badge">VISA</span><span class="pay-badge">MASTERCARD</span></div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span id="year">2026</span> RANA'S. All rights reserved.</span>
+      <span>Made with 💜 for shoppers in Pakistan · <a href="#home">Terms</a> · <a href="#home">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== CART DRAWER ===== -->
+<aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Shopping Cart <span class="count-pill" id="cartPill">0 items</span></h3>
+    <button class="icon-btn" data-close-drawer aria-label="Close cart"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="sum-row"><span>Subtotal</span><span id="cartSubtotal">Rs 0</span></div>
+    <div class="sum-row"><span>Shipping</span><span id="cartShipping">—</span></div>
+    <div class="sum-row total"><span>Total</span><span id="cartTotal">Rs 0</span></div>
+    <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn">Proceed to Checkout
+      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+  </div>
+</aside>
+
+<!-- ===== WISHLIST DRAWER ===== -->
+<aside class="drawer" id="wishDrawer" aria-label="Wishlist">
+  <div class="drawer-head">
+    <h3>My Wishlist <span class="count-pill" id="wishPill">0 items</span></h3>
+    <button class="icon-btn" data-close-drawer aria-label="Close wishlist"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-items" id="wishItems"></div>
+  <div class="drawer-foot">
+    <button class="btn btn-primary btn-block" id="wishAllToCart">Move All to Cart</button>
+  </div>
+</aside>
+
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div class="modal" id="qvModal" role="dialog" aria-modal="true" aria-label="Product quick view">
+  <div class="modal-box" style="max-width:900px;position:relative">
+    <button class="modal-close" data-close-modal aria-label="Close quick view"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="qv-grid">
+      <div class="qv-img"><img id="qvImg" src="" alt=""></div>
+      <div class="qv-info">
+        <span class="card-cat" id="qvCat"></span>
+        <h3 id="qvName"></h3>
+        <div class="stars" id="qvStars"></div>
+        <p class="qv-desc" id="qvDesc"></p>
+        <div class="qv-price"><span class="p" id="qvPrice"></span><span class="o" id="qvOld"></span><span class="off" id="qvOff"></span></div>
+        <div class="qv-actions">
+          <div class="qty" style="padding:4px">
+            <button id="qvMinus" aria-label="Decrease quantity"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+            <output id="qvQty">1</output>
+            <button id="qvPlus" aria-label="Increase quantity"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></svg></button>
+          </div>
+          <button class="btn btn-primary" id="qvAdd">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Cart</button>
+        </div>
+        <div class="qv-meta">
+          <span><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>Free delivery over Rs 5,000</span>
+          <span><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>7-day returns</span>
+          <span><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>100% genuine</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHECKOUT MODAL ===== -->
+<div class="modal" id="coModal" role="dialog" aria-modal="true" aria-label="Checkout">
+  <div class="modal-box co-box">
+    <button class="modal-close" data-close-modal aria-label="Close checkout"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div id="coMain">
+      <div class="co-head"><h3>🔒 Secure Checkout</h3></div>
+      <div class="co-grid">
+        <form class="co-form" id="coForm" novalidate>
+          <div class="fld"><label for="coName">Full Name</label><input id="coName" placeholder="e.g. Ahmed Ali" autocomplete="name"></div>
+          <div class="fld"><label for="coPhone">Phone Number</label><input id="coPhone" placeholder="03XX-XXXXXXX" inputmode="tel" autocomplete="tel"></div>
+          <div class="fld"><label for="coAddress">Delivery Address</label><textarea id="coAddress" rows="2" placeholder="House / street / area"></textarea></div>
+          <div class="fld"><label for="coCity">City</label>
+            <select id="coCity">
+              <option value="">Select your city…</option>
+              <option>Karachi</option><option>Lahore</option><option>Islamabad</option><option>Rawalpindi</option><option>Faisalabad</option><option>Multan</option><option>Peshawar</option><option>Quetta</option><option>Other</option>
+            </select>
+          </div>
+          <div class="fld"><label>Payment Method</label>
+            <div class="pay-opts">
+              <label class="pay-opt"><input type="radio" name="pay" value="Cash on Delivery" checked><b>💵 Cash on Delivery</b></label>
+              <label class="pay-opt"><input type="radio" name="pay" value="JazzCash"><b>📱 JazzCash</b></label>
+              <label class="pay-opt"><input type="radio" name="pay" value="Easypaisa"><b>📲 Easypaisa</b></label>
+              <label class="pay-opt"><input type="radio" name="pay" value="Debit / Credit Card"><b>💳 Debit / Credit Card</b></label>
+            </div>
+          </div>
+        </form>
+        <div class="co-summary">
+          <h4>Order Summary</h4>
+          <div id="coItems"></div>
+          <div class="sum-row"><span>Subtotal</span><span id="coSubtotal">Rs 0</span></div>
+          <div class="sum-row"><span>Shipping</span><span id="coShipping">—</span></div>
+          <div class="sum-row total"><span>Total</span><span id="coTotal">Rs 0</span></div>
+          <div class="co-note"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Your information is encrypted and never shared. You'll receive an order confirmation message within 2 hours.</div>
+          <button class="btn btn-primary btn-block btn-lg" id="placeOrderBtn" style="margin-top:14px">Place Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="success-wrap" id="coSuccess">
+      <div class="ok-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3>Order Placed Successfully! 🎉</h3>
+      <p>Shukriya for shopping with RANA'S! Our team will contact you shortly to confirm your delivery.</p>
+      <div class="order-id" id="orderId">RS-000000</div>
+      <button class="btn btn-primary btn-lg" data-close-modal>Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
