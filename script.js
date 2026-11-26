@@ -18,10 +18,7 @@
    Then replace the local PRODUCTS array with:
      const PRODUCTS = await (await fetch('/api/products')).json();
 ======================================================================================== */
-// Supabase browser configuration (Publishable key is safe to use in frontend with RLS enabled).
-const SUPABASE_URL = 'https://njxxaosdtvrgalfcnwxz.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_dFeEWTWlt_dFGfMQHRZbXA_eMONU0RN';
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const USE_API = false; // static demo mode
 
 /* ==================== DATA ==================== */
 const PRODUCTS = [
@@ -272,37 +269,58 @@ async function placeOrder() {
   mark(city, !city.value);
   if (!ok) { toast('Please fill all fields correctly', 'error'); return; }
   if (!state.cart.length) { toast('Your cart is empty', 'error'); return; }
+
   const pay = document.querySelector('input[name="pay"]:checked').value;
+  const oid = 'RS-' + Math.floor(100000 + Math.random() * 900000);
   const subtotal = cartSub();
-  const shipping = subtotal >= FREE_SHIP_OVER ? 0 : SHIP_FEE;
-  const orderId = 'RS-' + Math.floor(100000 + Math.random() * 900000);
-  const order = {
-    order_number: orderId,
-    customer_name: name.value.trim(),
-    phone: phone.value.trim(),
-    address: addr.value.trim(),
-    city: city.value,
-    payment_method: pay,
-    items: state.cart.map(c => { const p = byId(c.id); return { product_id:p.id, name:p.name, price:p.price, quantity:c.qty }; }),
-    subtotal, shipping, total: subtotal + shipping,
-    status: 'New'
-  };
-  const button = $('#placeOrderBtn');
-  button.disabled = true; button.textContent = 'Submitting order…';
+  const shipping = subtotal && subtotal < FREE_SHIP_OVER ? SHIP_FEE : 0;
+  const total = subtotal + shipping;
+  const items = state.cart.map(line => {
+    const p = byId(line.id);
+    return { product_id: p.id, name: p.name, price: p.price, quantity: line.qty, image: p.img };
+  });
+
+  const btn = $('#placeOrderBtn');
+  btn.disabled = true;
+  btn.textContent = 'Saving Order...';
   try {
-    const { data, error } = await supabaseClient.from('orders').insert(order).select('order_number').single();
-    if (error) throw error;
-    $('#orderId').textContent = data.order_number || orderId;
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_PUBLISHABLE_KEY,
+        'Authorization': `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        order_number: oid,
+        customer_name: name.value.trim(),
+        phone: phone.value.trim(),
+        address: addr.value.trim(),
+        city: city.value,
+        payment_method: pay,
+        items,
+        total
+      })
+    });
+    if (!response.ok) {
+      const detail = await response.text();
+      throw new Error(detail || `HTTP ${response.status}`);
+    }
+
+    $('#orderId').textContent = oid;
     $('#coMain').style.display = 'none';
     $('#coSuccess').classList.add('show');
-    state.cart = []; store.set('zy_cart', state.cart);
+    state.cart = [];
+    store.set('zy_cart', state.cart);
     renderCart(); updateBadges();
-    toast('Order saved successfully 🎉');
-  } catch (err) {
-    console.error('Order submission failed:', err);
-    toast('Order save nahi hua. Internet ya Supabase setup check karein.', 'error');
+    toast('Order saved successfully — ' + pay + ' 🎉');
+  } catch (error) {
+    console.error('Order save failed:', error);
+    toast('Order save nahi hua. Internet ya Supabase settings check karein.', 'error');
   } finally {
-    button.disabled = false; button.textContent = 'Place Order';
+    btn.disabled = false;
+    btn.textContent = 'Place Order';
   }
 }
 

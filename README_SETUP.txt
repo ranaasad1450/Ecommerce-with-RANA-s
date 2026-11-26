@@ -1,25 +1,17 @@
-RANA'S — Supabase Orders + Admin Dashboard
+RANA'S — Supabase Connected Version
 
-FILES
-- index.html, style.css, script.js: updated storefront. Existing visual design is preserved.
-- admin.html: private admin login and order dashboard.
-- supabase_setup.sql: database table and Row Level Security policies.
+Files:
+- index.html, style.css, script.js: existing storefront (design retained)
+- supabase-config.js: Supabase project URL + publishable key
+- admin.html, admin.js, admin.css: admin login and orders dashboard
+- supabase_setup.sql: setup SQL (already run in your project, so do not run again unless needed)
 
-SETUP (do these steps before publishing)
-1. Open Supabase project: https://supabase.com/dashboard/project/njxxaosdtvrgalfcnwxz
-2. Open SQL Editor > New query. Open supabase_setup.sql, copy all SQL, paste, and click Run.
-3. In Supabase Authentication > Users, create your admin user with your own email/password.
-4. Copy that user's UUID. In SQL Editor run this, replacing the placeholder with your UUID:
-   insert into public.admin_users (user_id) values ('PASTE-YOUR-ADMIN-USER-UUID-HERE');
-5. Upload/replace index.html, style.css and script.js in your website project and redeploy to Vercel.
-6. Also upload admin.html to the same project. Admin page URL will be your-domain/admin.html
-7. Open admin.html and sign in using the Auth email/password created in step 3.
-
-IMPORTANT SECURITY
-- The Publishable key is designed for frontend use. RLS policies protect customer order data.
-- Never put a Supabase secret/service_role key or database password in these files.
-- Only the UUID inserted into admin_users can read/update customer orders.
-- Do not share admin login details. Use a strong password.
-
-HOW IT WORKS
-When a customer submits checkout, the order is inserted into Supabase. It appears in admin.html after login. You can change its status (New, Confirmed, Dispatched, Delivered, Cancelled).
+IMPORTANT:
+1. Only the Supabase publishable key is used in browser code. Never add service_role/secret keys.
+2. Your admin account must already exist in Supabase Authentication > Users, and its UUID must be in public.admins.
+3. Upload ALL files in this folder to the same GitHub repository root (including admin files and supabase-config.js).
+4. Vercel should redeploy automatically after GitHub receives the commit.
+5. Admin dashboard URL: https://YOUR-VERCEL-DOMAIN/admin.html
+6. Test with one small order. It should appear in Supabase Table Editor > orders and in admin.html.
+7. Password reset: open /admin.html, enter your registered email, and click "Forgot password?". The email link should open /reset-password.html on your Vercel domain. Set a new password there, then log in normally.
+8. In Supabase Authentication > URL Configuration, set Site URL to https://ecommercewithrana.vercel.app and add https://ecommercewithrana.vercel.app/** to Redirect URLs.

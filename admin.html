@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RANA'S — Admin Orders</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
-:root{font-family:Inter,Arial,sans-serif;color:#172033;background:#f5f6fb}*{box-sizing:border-box}body{margin:0}.top{background:linear-gradient(120deg,#7c3aed,#4f46e5);color:white;padding:25px max(5vw,20px);display:flex;justify-content:space-between;align-items:center}.top h1{margin:0;font-size:24px}.wrap{max-width:1150px;margin:32px auto;padding:0 18px}.panel{background:white;border:1px solid #e6e8f0;border-radius:18px;padding:24px;box-shadow:0 8px 30px #1720330b}.login{max-width:420px;margin:55px auto}.field{display:block;width:100%;padding:13px;margin:8px 0 16px;border:1px solid #d9ddec;border-radius:10px;font-size:15px}button{border:0;border-radius:10px;padding:12px 18px;background:#6d3be8;color:white;font-weight:700;cursor:pointer}button:disabled{opacity:.5}.secondary{background:#edf0f7;color:#263149}.muted{color:#68738b}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.stat{background:#f8f7ff;border:1px solid #ebe7ff;border-radius:14px;padding:18px}.stat b{display:block;font-size:26px;margin-top:5px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:850px}th,td{text-align:left;padding:13px 11px;border-bottom:1px solid #edf0f5;font-size:14px;vertical-align:top}th{color:#64708a;background:#fafbfe}.status{padding:6px 9px;border-radius:8px;border:1px solid #ddd7f8;background:#f4f0ff}.msg{margin:12px 0;color:#b42318}.hidden{display:none!important}@media(max-width:650px){.stats{grid-template-columns:1fr}.top{align-items:flex-start;gap:12px;flex-direction:column}}
-</style></head><body><header class="top"><h1>RANA'S · Order Dashboard</h1><button id="logout" class="secondary hidden">Logout</button></header><main class="wrap"><section id="loginBox" class="panel login"><h2>Admin Login</h2><p class="muted">Sign in with the admin email and password created in Supabase Authentication.</p><form id="loginForm"><label>Email</label><input class="field" id="email" type="email" required><label>Password</label><input class="field" id="password" type="password" required><button type="submit">Login</button></form><p id="loginMsg" class="msg"></p></section><section id="dashboard" class="hidden"><div class="stats"><div class="stat">Total Orders<b id="totalOrders">0</b></div><div class="stat">New Orders<b id="newOrders">0</b></div><div class="stat">Total Sales<b id="sales">Rs 0</b></div></div><div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><h2 style="margin:0">Customer Orders</h2><p class="muted">Latest orders received from your website.</p></div><button id="refresh" class="secondary">Refresh</button></div><p id="dashMsg" class="msg"></p><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Phone / Address</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Update</th></tr></thead><tbody id="ordersBody"></tbody></table></div></div></section></main>
-<script>
-const SUPABASE_URL='https://njxxaosdtvrgalfcnwxz.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_dFeEWTWlt_dFGfMQHRZbXA_eMONU0RN';
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-const $=s=>document.querySelector(s), money=n=>'Rs '+Number(n||0).toLocaleString('en-PK'), esc=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
-function msg(t){$('#dashMsg').textContent=t||''}
-async function loadOrders(){msg('Loading orders…');const {data,error}=await db.from('orders').select('*').order('created_at',{ascending:false});if(error){msg(error.message);return}msg('');$('#totalOrders').textContent=data.length;$('#newOrders').textContent=data.filter(x=>x.status==='New').length;$('#sales').textContent=money(data.reduce((a,x)=>a+Number(x.total||0),0));$('#ordersBody').innerHTML=data.map(o=>`<tr><td><b>${esc(o.order_number)}</b><br><small>${new Date(o.created_at).toLocaleString()}</small></td><td>${esc(o.customer_name)}</td><td>${esc(o.phone)}<br>${esc(o.address)}, ${esc(o.city)}</td><td>${(o.items||[]).map(i=>`${esc(i.name)} × ${Number(i.quantity)}`).join('<br>')}</td><td><b>${money(o.total)}</b></td><td>${esc(o.payment_method)}</td><td><span class="status">${esc(o.status)}</span></td><td><select class="field" style="min-width:120px;margin:0" data-status="${esc(o.id)}"><option ${o.status==='New'?'selected':''}>New</option><option ${o.status==='Confirmed'?'selected':''}>Confirmed</option><option ${o.status==='Dispatched'?'selected':''}>Dispatched</option><option ${o.status==='Delivered'?'selected':''}>Delivered</option><option ${o.status==='Cancelled'?'selected':''}>Cancelled</option></select></td></tr>`).join('')||'<tr><td colspan="8">No orders received yet.</td></tr>';document.querySelectorAll('[data-status]').forEach(el=>el.addEventListener('change',async()=>{const {error}=await db.from('orders').update({status:el.value}).eq('id',el.dataset.status);if(error){msg(error.message);return}loadOrders()}))}
-async function showSession(){const {data:{session}}=await db.auth.getSession();if(!session){$('#loginBox').classList.remove('hidden');$('#dashboard').classList.add('hidden');$('#logout').classList.add('hidden');return}const {data:admin,error}=await db.from('admin_users').select('user_id').eq('user_id',session.user.id).maybeSingle();if(error||!admin){await db.auth.signOut();$('#loginMsg').textContent='This account is not registered as an admin.';$('#loginBox').classList.remove('hidden');return}$('#loginBox').classList.add('hidden');$('#dashboard').classList.remove('hidden');$('#logout').classList.remove('hidden');loadOrders()}
-$('#loginForm').addEventListener('submit',async e=>{e.preventDefault();$('#loginMsg').textContent='Signing in…';const {error}=await db.auth.signInWithPassword({email:$('#email').value,password:$('#password').value});if(error){$('#loginMsg').textContent=error.message;return}$('#loginMsg').textContent='';showSession()});$('#logout').addEventListener('click',async()=>{await db.auth.signOut();showSession()});$('#refresh').addEventListener('click',loadOrders);showSession();
-</script></body></html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RANA'S — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="top"><a href="index.html" class="brand">RANA<b>'S</b> <span>ADMIN</span></a><button id="logoutBtn" class="btn ghost" hidden>Log out</button></header>
+<main class="wrap">
+  <section class="panel login" id="loginPanel">
+    <h1>Admin Login</h1><p>Sign in with the email and password already registered in Supabase.</p>
+    <form id="loginForm">
+      <label>Email<input id="email" type="email" required autocomplete="username"></label>
+      <label>Password<input id="password" type="password" required autocomplete="current-password"></label>
+      <button class="btn primary" id="loginBtn">Login</button>
+      <button class="btn ghost" type="button" id="forgotBtn">Forgot password?</button>
+      <p class="message" id="loginMessage" role="status"></p>
+    </form>
+  </section>
+  <section id="dashboard" hidden>
+    <div class="heading"><div><h1>Orders</h1><p>Customer orders saved from your RANA'S website.</p></div><button class="btn ghost" id="refreshBtn">Refresh</button></div>
+    <div class="stats"><div class="panel"><span>Total orders</span><strong id="totalOrders">0</strong></div><div class="panel"><span>Pending orders</span><strong id="pendingOrders">0</strong></div></div>
+    <div class="panel table-panel">
+      <div class="table-scroll"><table><thead><tr><th>Order</th><th>Customer</th><th>Phone</th><th>Delivery</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th></tr></thead><tbody id="ordersBody"><tr><td colspan="9">Loading orders…</td></tr></tbody></table></div>
+      <p class="message" id="dashboardMessage" role="status"></p>
+    </div>
+  </section>
+</main>
+<script src="supabase-config.js"></script><script src="admin.js"></script>
+</body></html>
