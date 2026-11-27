@@ -15,3 +15,10 @@ IMPORTANT:
 6. Test with one small order. It should appear in Supabase Table Editor > orders and in admin.html.
 7. Password reset: open /admin.html, enter your registered email, and click "Forgot password?". The email link should open /reset-password.html on your Vercel domain. Set a new password there, then log in normally.
 8. In Supabase Authentication > URL Configuration, set Site URL to https://ecommercewithrana.vercel.app and add https://ecommercewithrana.vercel.app/** to Redirect URLs.
+
+
+CUSTOMER ORDER TRACKING
+1. Run track_order_setup.sql once in Supabase SQL Editor.
+2. Upload all files in this ZIP to the root of your GitHub repository and commit.
+3. Vercel will redeploy. Customers can open /track-order.html or use Track Order in the store menu.
+4. Customers need the Order Number shown after checkout and the same phone number used at checkout.
